@@ -11,7 +11,7 @@ import Image from "next/image";
 export default async function Home({ searchParams }: HomeProps) {
   const allServices = await fetchServices();
   const isDataEmpty = !Array.isArray(allServices?.data) || allServices?.data.length < 1 || !allServices;
-  console.log(allServices, "allServices");
+  // console.log(allServices, "allServices");
   return (
     <main className="overflow-hidden">
       <Hero />

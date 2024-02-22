@@ -62,6 +62,21 @@ export async function fetchServices() {
 
   return result;
 }
+export async function fetchService(id:number) {
+  console.log(id,'id')
+
+  const response = await fetch(
+    `http://localhost:8080/user/service/${id}`,
+    {
+      headers: new Headers(),
+    }
+  );
+
+  // Parse the response as JSON
+  const result = await response.json();
+
+  return result;
+}
 
 // @ts-ignore
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {

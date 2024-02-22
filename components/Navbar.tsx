@@ -74,7 +74,7 @@ const NavBar = () => {
               }
               `}
             >
-              Phone number
+              9843266267
             </a>
           </div>
           {/* Mobile Menu Button - Hamburger Icon */}
