@@ -91,6 +91,7 @@ const CarDetails = ({ isOpen, closeModal, service }: ServiceDetailsProps) => (
                         priority
                         className="object-contain"
                       /> */}
+                      View More -&gt;
                     </div>
                   </div>
                 </div>
@@ -101,17 +102,23 @@ const CarDetails = ({ isOpen, closeModal, service }: ServiceDetailsProps) => (
                   </h2>
 
                   <div className="mt-3 flex flex-wrap gap-4">
-                    {Object.entries(service).map(([key, value]) => (
-                      <div
-                        className="flex justify-between gap-5 w-full text-right"
-                        key={key}
-                      >
-                        <h4 className="text-grey capitalize">
-                          {key.split("_").join(" ")}
-                        </h4>
-                        <p className="text-black-100 font-semibold">{value}</p>
-                      </div>
-                    ))}
+                    {/* {Object.entries(service).map(([key, value]) => ( */}
+                    <div
+                      className="flex gap-5 w-full text-right"
+                      key={service.id}
+                    >
+                      <p className="text-black-100 font-semibold">
+                        {service.serviceDescription}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      className="relative text-white top-2 right-2 z-10 w-fit p-2 bg-purple-700 rounded-full "
+                      // onClick={closeModal}
+                    >
+                      Book your appointment now
+                    </button>
+                    {/* // ))} */}
                   </div>
                 </div>
               </Dialog.Panel>
