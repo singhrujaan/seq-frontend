@@ -139,9 +139,19 @@ const NavBar = () => {
         </div>
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between px-4 h-16 border-b border-gray-200">
-            <a href="/" className="flex items-center">
-              <img className="h-8 w-auto sm:h-10" src="/logo.svg" alt="Logo" />
-            </a>
+            <Link
+              href={{
+                pathname: "/",
+              }}
+            >
+              <div className="flex items-center">
+                <img
+                  className="h-8 w-auto sm:h-10"
+                  src="/logo.svg"
+                  alt="Logo"
+                />
+              </div>
+            </Link>
             <button
               onClick={toggleMobileMenu}
               className="inline-flex items-center justify-center p-2 text-gray-400 hover:text-gray-800 focus:outline-none focus:text-gray-800"

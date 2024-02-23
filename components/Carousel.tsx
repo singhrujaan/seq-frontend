@@ -23,7 +23,7 @@ const Carousel = ({ images }: { images: string[] }) => {
     );
   };
   return (
-    <div className="relative w-full lg:h-screen h-96 overflow-hidden">
+    <div className="relative w-full lg:h-screen  h-96 overflow-hidden">
       <div className="absolute inset-0 flex items-center justify-center">
         {images.map((image, index) => (
           <img
@@ -37,13 +37,13 @@ const Carousel = ({ images }: { images: string[] }) => {
         ))}
       </div>
       <button
-        onClick={prevSlide}
+        // onClick={prevSlide}
         className="absolute left-0 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 hover:bg-opacity-70 focus:outline-none rounded-full p-2"
       >
         &larr;
       </button>
       <button
-        onClick={nextSlide}
+        // onClick={nextSlide}
         className="absolute right-0 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 hover:bg-opacity-70 focus:outline-none rounded-full p-2"
       >
         &rarr;

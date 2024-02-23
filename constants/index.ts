@@ -45,7 +45,6 @@ export const manufacturers = [
   export const navItems = [
     { name: "Home", href: "Home" },
     { name: "Services", href: "Services" },
-    { name: "Products", href: "Products" },
     { name: "Location", href: "Location" },
     { name: "About us", href: "2017" }
   ];
