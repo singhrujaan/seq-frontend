@@ -43,10 +43,11 @@ export const manufacturers = [
   ];
   
   export const navItems = [
-    { name: "Home", href: "Home" },
-    { name: "Services", href: "Services" },
-    { name: "Location", href: "Location" },
-    { name: "About us", href: "2017" }
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "My appointments", href: "/appointment/my-appointments" },
+    { name: "Location", href: "#" },
+    { name: "About us", href: "#" }
   ];
   export const yearsOfProduction = [
     { title: "Year", value: "" },

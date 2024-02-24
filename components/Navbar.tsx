@@ -13,7 +13,7 @@ const NavBar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 500); // Fix navbar after scrolling 50 pixels
+      setIsScrolled(scrollTop > 50); // Fix navbar after scrolling 50 pixels
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -66,8 +66,8 @@ const NavBar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="hidden md:flex md:items-center md:space-x-4">
-            <a
-              href="#"
+            <Link
+              href="/"
               className={` hover:text-teal-800 px-3 py-2 rounded-md text-md 
               text-[18px] font-bold ${
                 isScrolled ? "text-white " : "text-gray-500"
@@ -75,7 +75,7 @@ const NavBar = () => {
               `}
             >
               9843266267
-            </a>
+            </Link>
           </div>
           {/* Mobile Menu Button - Hamburger Icon */}
           <div className="flex md:hidden">
@@ -95,29 +95,32 @@ const NavBar = () => {
           {/* Navigation Links - Desktop */}
           <div className="hidden md:flex md:items-center md:space-x-4">
             {navItems.map((item) => (
-              <a
-                href="#"
+              <Link
+                href={item.href}
                 className={`text-gray-500 hover:text-teal-800 px-3 py-2 rounded-md text-md  text-[16px] font-medium
                 ${isScrolled ? "text-white " : "text-gray-500"}
                 `}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="hidden md:flex md:items-center md:space-x-4">
             {/* {navItems.map((item) => ( */}
-            <CustomButton
-              title="Sign in"
-              btnType="button"
-              containerStyles="text-primary-blue rounded-full bg-white min-w-[130px]"
-            />
-            <CustomButton
-              title="Register"
-              btnType="button"
-              containerStyles="text-primary-blue rounded-full bg-white min-w-[130px]"
-            />
-            <h2>Cart</h2>
+            <Link href="/sign-in">
+              <CustomButton
+                title="Sign in"
+                btnType="button"
+                containerStyles="text-primary-blue rounded-full bg-white min-w-[130px]"
+              />
+            </Link>
+            <Link href="/register">
+              <CustomButton
+                title="Register"
+                btnType="button"
+                containerStyles="text-primary-blue rounded-full bg-white min-w-[130px]"
+              />
+            </Link>
             {/* ))} */}
           </div>
         </div>
@@ -161,12 +164,12 @@ const NavBar = () => {
           </div>
           <div className="flex flex-col px-4 py-6 space-y-2">
             {navItems.map((item) => (
-              <a
-                href="#"
+              <Link
+                href={item.href}
                 className="text-gray-800 hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

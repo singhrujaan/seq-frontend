@@ -4,11 +4,11 @@ import Image from "next/image";
 import { CustomButton } from ".";
 import Carousel from "./Carousel";
 import { useEffect } from "react";
+import Link from "next/link";
 
 // import { CustomButton } from "@components";
 
 const Hero = () => {
- 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -43,12 +43,11 @@ const Hero = () => {
           <p className="text-lg mt-2 text-gray-600">
             Beauty is not about enhancing
           </p>
-          <button
-            type="button"
-            className="relative top-2 right-2 z-10 w-fit p-2 bg-purple-700 rounded-full"
-          >
-            Book your appointment now
-          </button>
+          <Link href="/services">
+            <div className="w-1/2 lg:w-2/5 mx-auto p-2 bg-purple-700 rounded-lg lg:rounded-full">
+              Book your appointment now
+            </div>
+          </Link>
         </div>
       </div>
       {/* collage */}
