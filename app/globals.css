@@ -216,4 +216,52 @@
 .search-manufacturer__option {
   @apply cursor-default select-none py-2 pl-10 pr-4;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Change translateY to move downwards */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.appear-animation {
+  animation: fadeIn 1.3s ease forwards; /* Increase duration for slower animation */
+}
+.sub-appear-animation {
+  animation: fadeIn 3s ease forwards; /* Increase duration for slower animation */
+}
 /* END: search manufacturer styles */
+
+/* collage */
+.collage {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Four columns with equal width */
+  gap: 10px; /* Gap between images */
+  max-width: 800px; /* Max width of the collage */
+  margin: 0 auto; /* Centering the collage */
+}
+
+.row {
+  display: flex;
+  justify-content: space-between; /* Evenly distribute images within the row */
+}
+
+.cell {
+  flex: 1; /* Each cell takes equal space */
+  position: relative;
+  overflow: hidden;
+  padding-top: 100%; /* Maintain 1:1 aspect ratio for each cell */
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Make sure images occupy full width of their container */
+  height: 100%; /* Fill the cell completely */
+  object-fit: cover; /* Maintain aspect ratio while covering the cell */
+}

@@ -1,4 +1,6 @@
 import { ServiceProps, FilterProps } from "@/types";
+import axios from "axios";
+import { getHeaders } from "./functions";
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
   const basePricePerDay = 50; // Base rental price per day in dollars
@@ -78,6 +80,7 @@ export async function fetchService(id:number) {
   return result;
 }
 
+
 // @ts-ignore
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   const url = new URL("https://cdn.imagin.studio/getimage");
@@ -93,3 +96,92 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
 
   return `${url}`;
 } 
+
+export async function signIn(email:string,password:string) {
+
+ 
+  const result = axios.post('http://localhost:8080/user/login', {
+    email: email,
+    password: password
+  })
+  .then(function (response) {
+    console.log(response);
+    return response
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+  return result;
+}
+export async function register(data:{name:string,email:string,address:string,password:string}) {
+  const {name,email,address,password} = data
+ 
+  const result = axios.post('http://localhost:8080/user/register', {
+  name,
+    email,
+    password,
+    address
+  })
+  .then(function (response) {
+    console.log(response,'response');
+    return response
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+  return result;
+}
+export async function bookAppointment(data: {
+  date: string;
+  time: string;
+  serviceType: string;
+  serviceId: number;
+}) {
+  const { date, time, serviceType,  serviceId } = data;
+  const headers = getHeaders();
+  console.log(headers, 'headers');
+  try {
+    const result = await axios.post(
+      'http://localhost:8080/appointment/book-appointment',
+      {
+        appointmentDate: date,
+        appointmentTime: date,
+        serviceType,
+        serviceId,
+      },
+      { headers }
+    );
+    console.log(result, 'response');
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+export async function myAppointments() {
+  const headers = getHeaders();
+  console.log(headers, 'headers');
+  try {
+    const result = axios.get(
+      'http://localhost:8080/appointment/my-appointments',
+      { headers }
+    )
+  .then(function (response) {
+    console.log(response,'response');
+    return response
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+  return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}

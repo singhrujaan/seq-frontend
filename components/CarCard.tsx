@@ -13,7 +13,7 @@ interface ServiceProp {
 }
 
 const CarCard = ({ service }: ServiceProp) => {
-  const { id, serviceName, serviceDescription, servicePrice} = service
+  const { id, serviceName, serviceDescription, servicePrice } = service;
   const [isOpen, setIsOpen] = useState(false);
 
   // const carRent = calculateCarRent(city_mpg, year);
@@ -25,12 +25,12 @@ const CarCard = ({ service }: ServiceProp) => {
       </div>
 
       <p className="flex mt-6 text-[32px] leading-[38px] font-extrabold">
-        <span className="self-start text-[14px] leading-[17px] font-semibold">
+        <span className="self-start text-[14px] leading-[17px] font-semibold appear-animation">
           Rs.
         </span>
-        {servicePrice}
-        <span className="self-end text-[14px] leading-[17px] font-medium">
-        {serviceName}
+        <span className="sub-appear-animation">{servicePrice}</span>
+        <span className="self-end text-[14px] leading-[17px] font-medium appear-animation">
+          {serviceName}
         </span>
       </p>
 

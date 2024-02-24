@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Dialog, Transition } from "@headlessui/react";
 import { generateCarImageUrl } from "@/utils";
 import { ServiceProps } from "@/types";
+import Link from "next/link";
 
 interface ServiceDetailsProps {
   isOpen: boolean;
@@ -97,27 +98,42 @@ const CarDetails = ({ isOpen, closeModal, service }: ServiceDetailsProps) => (
                 </div>
 
                 <div className="flex-1 flex flex-col gap-2">
-                  <h2 className="font-semibold text-xl capitalize">
-                    {service.serviceName} {service.servicePrice}
+                  <h2 className="font-semibold text-xl capitalize ">
+                    {service?.serviceName} {service?.servicePrice}
                   </h2>
 
                   <div className="mt-3 flex flex-wrap gap-4">
                     {/* {Object.entries(service).map(([key, value]) => ( */}
                     <div
                       className="flex gap-5 w-full text-right"
-                      key={service.id}
+                      key={service?.id}
                     >
                       <p className="text-black-100 font-semibold">
-                        {service.serviceDescription}
+                        {service?.serviceDescription}
                       </p>
                     </div>
-                    <button
-                      type="button"
-                      className="relative text-white top-2 right-2 z-10 w-fit p-2 bg-purple-700 rounded-full "
-                      // onClick={closeModal}
-                    >
-                      Book your appointment now
-                    </button>
+                    <div className="flex justify-around items-center">
+                      <button
+                        type="button"
+                        className="relative text-white top-2 right-2 z-10 w-fit p-2 bg-purple-700 rounded-full "
+                        // onClick={closeModal}
+                      >
+                        Book your appointment now
+                      </button>
+                      <Link
+                        href={{
+                          pathname: "/services/" + service.id,
+                          query: { name: service?.serviceName },
+                        }}
+                      >
+                        <div
+                          className="relative cursor-pointer text-white top-2 left-5 z-10 w-fit p-2 bg-green-600 rounded-full "
+                          // onClick={closeModal}
+                        >
+                          Learn More
+                        </div>
+                      </Link>
+                    </div>
                     {/* // ))} */}
                   </div>
                 </div>
