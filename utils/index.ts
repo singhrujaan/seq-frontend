@@ -115,6 +115,21 @@ export async function signIn(email:string,password:string) {
 
   return result;
 }
+export async function logOut() {
+
+ 
+  const result = axios.get('http://localhost:8080/user/logout')
+  .then(function (response) {
+    console.log(response);
+    return response
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+  return result;
+}
 export async function register(data:{name:string,email:string,address:string,password:string}) {
   const {name,email,address,password} = data
  
@@ -162,6 +177,22 @@ export async function bookAppointment(data: {
     throw error;
   }
 }
+export async function cancelAppointment(id: 
+  number) {
+  const headers = getHeaders();
+  console.log(headers, 'headers');
+  try {
+    const result = await axios.delete(
+      `http://localhost:8080/appointment/cancel-appointments/${id}`,     
+      { headers }
+    );
+    console.log(result, 'response');
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
 export async function myAppointments() {
   const headers = getHeaders();
   console.log(headers, 'headers');
@@ -169,6 +200,51 @@ export async function myAppointments() {
     const result = axios.get(
       'http://localhost:8080/appointment/my-appointments',
       { headers }
+    )
+  .then(function (response) {
+    console.log(response,'response');
+    return response
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+  return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+export async function resetPassword(email:string) {
+  try {
+    const result = axios.post(
+      'http://localhost:8080/user/reset-password',{
+        email
+      }
+    )
+  .then(function (response) {
+    console.log(response,'response');
+    return response
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+  return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+export async function resetPasswordParams(password:string,userId:number,token:string) {
+  try {
+console.log(password,userId,token,'api')
+    const result = axios.post(
+      'http://localhost:8080/user/reset-password-params',{
+        password,userId,token
+      }
     )
   .then(function (response) {
     console.log(response,'response');

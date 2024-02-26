@@ -1,6 +1,6 @@
 // pages/appointments/index.tsx
 "use client";
-import { myAppointments } from "@/utils";
+import { myAppointments, cancelAppointment } from "@/utils";
 import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
 
@@ -11,10 +11,16 @@ const AppointmentsPage: React.FC = () => {
   const bookAppointment = async () => {
     const myBookings = await myAppointments();
     const data = myBookings?.data?.data;
-    Object.values(data).map((value: any, index: number) => {
-      setAppointments((prev: any) => [...value]);
-      console.log(index, "valll");
-    });
+    data &&
+      Object.values(data).map((value: any, index: number) => {
+        setAppointments((prev: any) => [...value]);
+        console.log(index, "valll");
+      });
+  };
+
+  const cancelMyAppointment = async (id: number) => {
+    const cancelApi = await cancelAppointment(id);
+    console.log(cancelApi, "cancelap");
   };
 
   useMemo(() => {
@@ -52,6 +58,12 @@ const AppointmentsPage: React.FC = () => {
                   </span>
                   <span className="text-lg">
                     Rs.{" " + appointment.Services[0].servicePrice}
+                  </span>
+                  <span
+                    className="text-lg"
+                    onClick={() => cancelAppointment(appointment?.id)}
+                  >
+                    X
                   </span>
                   <span>{appointment.isOpen ? "-" : "+"}</span>
                 </div>

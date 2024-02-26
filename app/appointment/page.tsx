@@ -1,9 +1,11 @@
 "use client";
 import { bookAppointment } from "@/utils";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const AppointmentBookingPage = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     date: "",
     time: "",
@@ -40,8 +42,10 @@ const AppointmentBookingPage = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = { ...formData, ...userService };
-    const createBook = await bookAppointment(data)
-
+    const createBook = await bookAppointment(data);
+    if (createBook.data.status && createBook.status === 200) {
+      router.push("/appointment/my-appointments");
+    }
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
