@@ -3,7 +3,6 @@
 import Gallery from "@/components/Gallery";
 import { ServiceProps } from "@/types";
 import { fetchService, fetchServices } from "@/utils";
-import { snakeCaseToHumanReadable } from "@/utils/functions";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -24,7 +23,6 @@ export default function Services({ params }: any) {
   }, [params.services]);
   return (
     <div className="">
-      
       <div className="relative h-80 md:h-80  lg:h-screen pt-96">
         <Image src="/overlaps.jpg" alt="Example Image" fill={true} />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">

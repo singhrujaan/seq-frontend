@@ -1,5 +1,6 @@
 "use client";
 import { signIn } from "@/utils";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -83,12 +84,12 @@ const SignInPage = () => {
             </div>
 
             <div className="text-sm">
-              <a
-                href="#"
+              <Link
+                href="/reset-password"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
                 Forgot your password?
-              </a>
+              </Link>
             </div>
           </div>
 

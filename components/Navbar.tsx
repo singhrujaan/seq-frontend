@@ -4,9 +4,12 @@ import Image from "next/image";
 import CustomButton from "./CustomButton";
 import { useEffect, useRef, useState } from "react";
 import { navItems } from "@/constants";
+import { logOut } from "@/utils";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoggedin, setLoggedin] = useState(false);
+  const [isUser, setIsUser] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -21,6 +24,21 @@ const NavBar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    const isLogin = localStorage.getItem("token");
+    if (isLogin) {
+      setLoggedin(true);
+    } else {
+      setLoggedin(false);
+    }
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsUser(user);
+    } else {
+      setIsUser("");
+    }
   }, []);
 
   useEffect(() => {
@@ -41,6 +59,16 @@ const NavBar = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+  const handleLogOut = async () => {
+    const resLogOut = await logOut();
+    // @ts-ignore
+    if (resLogOut.status === 200 && resLogOut.status) {
+      setLoggedin(false);
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    }
+    console.log(resLogOut, "res");
   };
 
   return (
@@ -105,24 +133,36 @@ const NavBar = () => {
               </Link>
             ))}
           </div>
-          <div className="hidden md:flex md:items-center md:space-x-4">
-            {/* {navItems.map((item) => ( */}
-            <Link href="/sign-in">
+          {isLoggedin ? (
+            <div className="hidden md:flex md:items-center md:space-x-4">
+              Hi, {isUser}
               <CustomButton
-                title="Sign in"
+                handleClick={handleLogOut}
+                title="Log out"
                 btnType="button"
                 containerStyles="text-primary-blue rounded-full bg-white min-w-[130px]"
               />
-            </Link>
-            <Link href="/register">
-              <CustomButton
-                title="Register"
-                btnType="button"
-                containerStyles="text-primary-blue rounded-full bg-white min-w-[130px]"
-              />
-            </Link>
-            {/* ))} */}
-          </div>
+            </div>
+          ) : (
+            <div className="hidden md:flex md:items-center md:space-x-4">
+              {/* {navItems.map((item) => ( */}
+              <Link href="/login">
+                <CustomButton
+                  title="Sign in"
+                  btnType="button"
+                  containerStyles="text-primary-blue rounded-full bg-white min-w-[130px]"
+                />
+              </Link>
+              <Link href="/register">
+                <CustomButton
+                  title="Register"
+                  btnType="button"
+                  containerStyles="text-primary-blue rounded-full bg-white min-w-[130px]"
+                />
+              </Link>
+              {/* ))} */}
+            </div>
+          )}
         </div>
       </div>
       {/* Mobile Menu */}
